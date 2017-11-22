@@ -67,30 +67,25 @@ output=[]
 end
 
 def all_supplies_in_holidays(holiday_hash)
-  # iterate through holiday_hash and print items such that your readout resembles:
-  # Winter:
-  #   Christmas: Lights, Wreath
-  #   New Years: Party Hats
-  # Summer:
-  #   Fourth Of July: Fireworks, BBQ
-  # etc.
 output= ""
   holiday_hash.each do |season, holiday|
     cap_season=season.capitalize
-    output << "#{cap_season}:"
-    output << "\n"
+    puts "#{cap_season}:"
     holiday.each do |holiday,supplies|
-      output << "\t"
-      output << "#{holiday}:"
-      counter=0
-      while counter < supplies.size-1
-        output << "#{supplies[counter]},"
-        counter +=1
-      end
-      output << "#{supplies[supplies.size]}\n"
+
+      cap_holiday=holiday.capitalize
+        counter=0
+        while counter<cap_holiday.size
+          if cap_holiday[counter] == "_"
+            cap_holiday[counter] = " "
+            counter+=1
+          end
+        end
+      supplies_str=supplies.join(", ")
+
+      puts "  #{cap_holiday}: #{supplies_str}"
     end
   end
-  puts output
 end
 
 
