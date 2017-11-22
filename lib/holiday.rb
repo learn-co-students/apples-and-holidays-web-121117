@@ -72,21 +72,17 @@ output= ""
     cap_season=season.capitalize
     puts "#{cap_season}:"
     holiday.each do |holiday,supplies|
-
-      cap_holiday=holiday.capitalize
-        counter=0
-        while counter<cap_holiday.size
-          if cap_holiday[counter] == "_"
-            cap_holiday[counter] = " "
-            counter+=1
-          end
-        end
+      string_holiday = holiday.to_s
+      split_string = string_holiday.split("_")
+      capital_string = split_string.map do |x| x.capitalize end
+      cap_holiday = capital_string.join(" ")
+      # cap_holiday = clean_holiday.capitalize
       supplies_str=supplies.join(", ")
-
       puts "  #{cap_holiday}: #{supplies_str}"
     end
   end
 end
+
 
 
 def all_holidays_with_bbq(holiday_hash)
