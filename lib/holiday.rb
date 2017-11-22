@@ -65,6 +65,20 @@ def all_supplies_in_holidays(holiday_hash)
   # Summer:
   #   Fourth Of July: Fireworks, BBQ
   # etc.
+  holiday_hash.each do |season, holiday|
+
+    puts "#{season.capitalize}:"
+
+    holiday.each do |holiday, items|
+
+    puts "#{holiday.to_s}: #{items}"
+
+    end
+  end
+
+# * You'll need to capitalize *both words* in a given holiday's name. If you call `"new years".capitalize!`,
+# it will return `"New years"`. In order to capitalize *both* words, you'll need to `.split` the string into an array and
+# iterate over that array to `.capitalize!` each word in it. Then, you'll need to `.join` the array back into a string.
 
 end
 
