@@ -25,13 +25,13 @@ def add_supply_to_winter_holidays(holiday_hash, supply)
   # holiday_hash is identical to the one above
   # add the second argument, which is a supply, to BOTH the
   # Christmas AND the New Year's arrays
-  holiday_hash.each do |season, holiday_name|
-      if season == :winter
-          holiday_name.each do |holiday, supplies|
-              supplies << supply
-              end
-          end
+  holiday_hash.each do |season, holiday|
+    if season == :winter
+      holiday.each do |holiday, supplies|
+        supplies << supply
       end
+    end
+  end
 end
 
 
@@ -61,36 +61,29 @@ def all_supplies_in_holidays(holiday_hash)
   # Summer:
   #   Fourth Of July: Fireworks, BBQ
   # etc.
-  holiday_hash.each do |season, holiday_with_supplies|
-      puts "#{season.capitalize}:"
-      holiday_with_supplies.each do |holiday, supplies|
-          holiday_name = holiday.to_s.split("_")
-          holiday_name.each do |word|
-              word.capitalize!
-          end
-          new_holiday = holiday_name.join(" ")
-          puts "  #{new_holiday}: #{supplies.join(", ")}"
+  holiday_hash.each do |season, holiday_supplies|
+    puts "#{season.capitalize}:"
+    holiday_supplies.each do |holiday, supplies|
+      holiday_name = holiday.to_s.split("_")
+      holiday_name.each do |word|
+        word.capitalize!
       end
+      new_holiday = holiday_name.join(" ")
+      puts "  #{new_holiday}: #{supplies.join(", ")}"
+    end
   end
 end
 
 def all_holidays_with_bbq(holiday_hash)
   # return an array of holiday names (as symbols) where supply lists
   # include the string "BBQ"
-  bbq_array = []
-  holiday_hash.each do |season, holiday_supplies_hash|
-      holiday_supplies_hash.each do |holiday, supplies|
-          if supplies.include?("BBQ")
-              bbq_array << holiday
-          end
+  new_arr = []
+  holiday_hash.each do |season, holiday_supplies|
+    holiday_supplies.each do |holiday, supplies|
+      if supplies.include?("BBQ")
+        new_arr << holiday
       end
+    end
   end
-  bbq_array
+  new_arr
 end
-
-
-
-
-
-
-
